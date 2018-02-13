@@ -1,6 +1,7 @@
 package edu.carrollcc;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class App {
 
@@ -13,6 +14,7 @@ public class App {
 		email.setBody("This is an email!");
 		inbox.add(email);
 
+		Scanner keyboard = new Scanner(System.in);
 		for(ReadableBody rb : inbox){
 			System.out.println("----------");
 			if(rb instanceof Email){
@@ -21,7 +23,18 @@ public class App {
 
 			System.out.println("Body: " + rb.getTextBody());
 			System.out.println("----------");
+
+			if(rb instanceof Composable) {
+				Composable composable = (Composable)rb;
+				System.out.println("What would you like to reply?");
+				String reply = keyboard.nextLine();
+				composable.compose(reply);
+				System.out.println("Your new message will be: ");
+				System.out.println(rb.getTextBody());
+			}
 		}
+
+
 	}
 
 }
