@@ -14,6 +14,14 @@ public class App {
 		email.setBody("This is an email!");
 		inbox.add(email);
 
+		ReadableBody screamingMail = new ReadableBody() {
+			@Override
+			public String getTextBody() {
+				return email.getTextBody().toUpperCase();
+			}
+		};
+		inbox.add(screamingMail);
+
 		Scanner keyboard = new Scanner(System.in);
 		for(ReadableBody rb : inbox){
 			System.out.println("----------");
