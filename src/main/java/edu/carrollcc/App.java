@@ -21,7 +21,7 @@ public class App {
 				System.out.println("*** Electronic Mail ***");
 			}
 
-			System.out.println("Body: " + rb.getTextBody());
+			rb.display();
 			System.out.println("----------");
 
 			if(rb instanceof Composable) {
@@ -30,7 +30,7 @@ public class App {
 				String reply = keyboard.nextLine();
 				composable.compose(reply);
 				System.out.println("Your new message will be: ");
-				System.out.println(rb.getTextBody());
+				rb.display();
 			}
 		}
 
