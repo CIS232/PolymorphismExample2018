@@ -3,7 +3,13 @@ package edu.carrollcc;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
+
 public class App {
+
+	interface Calculator {
+		int calculator(int x, int y);
+	}
 
 	public static void main(String[] args){
 		ArrayList<ReadableBody> inbox = new ArrayList<>();
@@ -14,13 +20,14 @@ public class App {
 		email.setBody("This is an email!");
 		inbox.add(email);
 
-		ReadableBody screamingMail = new ReadableBody() {
-			@Override
-			public String getTextBody() {
-				return email.getTextBody().toUpperCase();
-			}
+		ReadableBody screamingMail = () -> {
+			String screamingSuffix = "!!!!!!";
+			return email.getTextBody().toUpperCase() + screamingSuffix;
 		};
 		inbox.add(screamingMail);
+
+		Calculator adder = (x, y) -> x + y;
+		System.out.println(adder.calculator(1,3));
 
 		Scanner keyboard = new Scanner(System.in);
 		for(ReadableBody rb : inbox){
